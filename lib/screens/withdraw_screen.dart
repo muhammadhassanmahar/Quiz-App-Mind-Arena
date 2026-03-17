@@ -1,33 +1,35 @@
 import 'package:flutter/material.dart';
 
 class WithdrawScreen extends StatelessWidget {
+  // Added key parameter and marked constructor as const
+  const WithdrawScreen({Key? key}) : super(key: key);
 
   final amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Withdraw")),
+      appBar: AppBar(title: const Text("Withdraw")),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
 
-            TextField(
+            const TextField(
               decoration: InputDecoration(labelText: "Account Number"),
             ),
 
             TextField(
               controller: amountController,
-              decoration: InputDecoration(labelText: "Amount"),
+              decoration: const InputDecoration(labelText: "Amount"),
             ),
 
             ElevatedButton(
               onPressed: (){
                 ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Withdraw Request Sent")));
+                    const SnackBar(content: Text("Withdraw Request Sent")));
               },
-              child: Text("Withdraw"),
+              child: const Text("Withdraw"),
             )
 
           ],

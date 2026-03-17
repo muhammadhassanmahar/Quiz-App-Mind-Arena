@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
+  // Added key parameter and marked constructor as const
+  const LoginScreen({Key? key}) : super(key: key);
 
   final emailController = TextEditingController();
   final passController = TextEditingController();
@@ -9,41 +11,39 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Mind Arena Login")),
+      appBar: AppBar(title: const Text("Mind Arena Login")),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
 
             TextField(
               controller: emailController,
-              decoration: InputDecoration(labelText: "Email"),
+              decoration: const InputDecoration(labelText: "Email"),
             ),
 
             TextField(
               controller: passController,
-              decoration: InputDecoration(labelText: "Password"),
+              decoration: const InputDecoration(labelText: "Password"),
               obscureText: true,
             ),
 
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             ElevatedButton(
               onPressed: () {
-
                 String email = emailController.text;
 
                 // simple admin check
                 if(email == "immaharhasaan@gmail.com"){
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => HomeScreen(isAdmin: true)));
+                      MaterialPageRoute(builder: (_) => const HomeScreen(isAdmin: true)));
                 } else {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => HomeScreen(isAdmin: false)));
+                      MaterialPageRoute(builder: (_) => const HomeScreen(isAdmin: false)));
                 }
-
               },
-              child: Text("Login"),
+              child: const Text("Login"),
             )
 
           ],
