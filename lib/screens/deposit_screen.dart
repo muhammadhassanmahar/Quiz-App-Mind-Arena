@@ -1,32 +1,36 @@
 import 'package:flutter/material.dart';
 
 class DepositScreen extends StatelessWidget {
-  DepositScreen({Key? key}) : super(key: key); // Added key parameter
+  // Key parameter added
+  DepositScreen({super.key});
 
-  final amountController = TextEditingController();
+  final TextEditingController amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Deposit")),
+      appBar: AppBar(title: const Text("Deposit")),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            Text("Send to: 03001234567"),
+
+            const Text("Send to: 03001234567"),
 
             TextField(
               controller: amountController,
-              decoration: InputDecoration(labelText: "Amount"),
+              decoration: const InputDecoration(labelText: "Amount"),
             ),
 
             ElevatedButton(
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Deposit Request Sent")));
+                  const SnackBar(content: Text("Deposit Request Sent")),
+                );
               },
-              child: Text("Submit"),
+              child: const Text("Submit"),
             ),
+
           ],
         ),
       ),
