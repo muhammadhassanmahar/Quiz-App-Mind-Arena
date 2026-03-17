@@ -6,8 +6,8 @@ import 'contest_screen.dart';
 class HomeScreen extends StatelessWidget {
   final bool isAdmin;
 
-  // Added key parameter and marked constructor as const
-  const HomeScreen({Key? key, required this.isAdmin}) : super(key: key);
+  // Key parameter added
+  const HomeScreen({super.key, required this.isAdmin});
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +28,14 @@ class HomeScreen extends StatelessWidget {
                 child: const Text("Deposit"),
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const DepositScreen()));
+                      MaterialPageRoute(builder: (_) => DepositScreen()));
                 },
               ),
               ElevatedButton(
                 child: const Text("Withdraw"),
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const WithdrawScreen()));
+                      MaterialPageRoute(builder: (_) => WithdrawScreen()));
                 },
               ),
             ],
@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
             child: const Text("100 PKR Contest"),
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => const ContestScreen(fee: 100)));
+                  MaterialPageRoute(builder: (_) => ContestScreen(fee: 100)));
             },
           ),
 
@@ -57,7 +57,7 @@ class HomeScreen extends StatelessWidget {
             child: const Text("500 PKR Contest"),
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => const ContestScreen(fee: 500)));
+                  MaterialPageRoute(builder: (_) => ContestScreen(fee: 500)));
             },
           ),
 
@@ -65,7 +65,7 @@ class HomeScreen extends StatelessWidget {
             child: const Text("1000 PKR Contest"),
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => const ContestScreen(fee: 1000)));
+                  MaterialPageRoute(builder: (_) => ContestScreen(fee: 1000)));
             },
           ),
 
