@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DepositScreen extends StatelessWidget {
+  DepositScreen({Key? key}) : super(key: key); // Added key parameter
 
   final amountController = TextEditingController();
 
@@ -12,7 +13,6 @@ class DepositScreen extends StatelessWidget {
         padding: EdgeInsets.all(20),
         child: Column(
           children: [
-
             Text("Send to: 03001234567"),
 
             TextField(
@@ -21,13 +21,12 @@ class DepositScreen extends StatelessWidget {
             ),
 
             ElevatedButton(
-              onPressed: (){
+              onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text("Deposit Request Sent")));
               },
               child: Text("Submit"),
-            )
-
+            ),
           ],
         ),
       ),

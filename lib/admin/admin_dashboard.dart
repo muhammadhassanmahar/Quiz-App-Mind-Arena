@@ -5,43 +5,53 @@ import 'users_screen.dart';
 import 'add_questions_screen.dart';
 
 class AdminDashboard extends StatelessWidget {
+  const AdminDashboard({Key? key}) : super(key: key); // Key parameter added
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Admin Dashboard")),
+      appBar: AppBar(title: const Text("Admin Dashboard")),
 
       body: ListView(
         children: [
 
           ListTile(
-            title: Text("Deposit Requests"),
-            onTap: (){
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => DepositRequestsScreen()));
+            title: const Text("Deposit Requests"),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const DepositRequestsScreen()), // const constructor if possible
+              );
             },
           ),
 
           ListTile(
-            title: Text("Withdraw Requests"),
-            onTap: (){
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => WithdrawRequestsScreen()));
+            title: const Text("Withdraw Requests"),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const WithdrawRequestsScreen()),
+              );
             },
           ),
 
           ListTile(
-            title: Text("Users"),
-            onTap: (){
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => UsersScreen()));
+            title: const Text("Users"),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const UsersScreen()),
+              );
             },
           ),
 
           ListTile(
-            title: Text("Add Questions"),
-            onTap: (){
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => AddQuestionsScreen()));
+            title: const Text("Add Questions"),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const AddQuestionsScreen()),
+              );
             },
           ),
 
