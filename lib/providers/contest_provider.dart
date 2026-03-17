@@ -4,7 +4,6 @@ import '../models/question_model.dart';
 import '../services/api_service.dart';
 
 class ContestProvider with ChangeNotifier {
-
   List<ContestModel> contests = [];
   List<QuestionModel> questions = [];
 
@@ -12,19 +11,17 @@ class ContestProvider with ChangeNotifier {
 
   // Load contests
   Future<void> loadContests() async {
-
     isLoading = true;
     notifyListeners();
 
-    try{
-      var res = await ApiService.getContests();
+    try {
+      final res = await ApiService.getContests();
 
-      contests = (res as List)
-          .map((e) => ContestModel.fromJson(e))
-          .toList();
-
-    } catch(e){
-      print(e);
+      contests = List<ContestModel>.from(
+        res.map((e) => ContestModel.fromJson(e)),
+      );
+    } catch (e) {
+      debugPrint('Error loading contests: $e');
     }
 
     isLoading = false;
@@ -33,33 +30,29 @@ class ContestProvider with ChangeNotifier {
 
   // Join contest
   Future<void> joinContest(String contestId) async {
-
-    try{
+    try {
       await ApiService.joinContest(contestId);
-    } catch(e){
-      print(e);
+    } catch (e) {
+      debugPrint('Error joining contest: $e');
     }
   }
 
   // Load questions
   Future<void> loadQuestions(int contestType) async {
-
     isLoading = true;
     notifyListeners();
 
-    try{
-      var res = await ApiService.getQuestions(contestType);
+    try {
+      final res = await ApiService.getQuestions(contestType);
 
-      questions = (res as List)
-          .map((e) => QuestionModel.fromJson(e))
-          .toList();
-
-    } catch(e){
-      print(e);
+      questions = List<QuestionModel>.from(
+        res.map((e) => QuestionModel.fromJson(e)),
+      );
+    } catch (e) {
+      debugPrint('Error loading questions: $e');
     }
 
     isLoading = false;
     notifyListeners();
   }
-
 }
