@@ -5,7 +5,8 @@ import 'users_screen.dart';
 import 'add_questions_screen.dart';
 
 class AdminDashboard extends StatelessWidget {
-  const AdminDashboard({Key? key}) : super(key: key); // Key parameter added
+  // Key parameter added for super constructor
+  const AdminDashboard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class AdminDashboard extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => const DepositRequestsScreen()), // const constructor if possible
+                MaterialPageRoute(builder: (_) => const DepositRequestsScreen()),
               );
             },
           ),

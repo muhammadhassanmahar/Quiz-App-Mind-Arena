@@ -28,14 +28,14 @@ class HomeScreen extends StatelessWidget {
                 child: const Text("Deposit"),
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => DepositScreen()));
+                      MaterialPageRoute(builder: (_) => const DepositScreen()));
                 },
               ),
               ElevatedButton(
                 child: const Text("Withdraw"),
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => WithdrawScreen()));
+                      MaterialPageRoute(builder: (_) => const WithdrawScreen()));
                 },
               ),
             ],
@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
             child: const Text("100 PKR Contest"),
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => ContestScreen(fee: 100)));
+                  MaterialPageRoute(builder: (_) => const ContestScreen(fee: 100)));
             },
           ),
 
@@ -57,7 +57,7 @@ class HomeScreen extends StatelessWidget {
             child: const Text("500 PKR Contest"),
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => ContestScreen(fee: 500)));
+                  MaterialPageRoute(builder: (_) => const ContestScreen(fee: 500)));
             },
           ),
 
@@ -65,7 +65,7 @@ class HomeScreen extends StatelessWidget {
             child: const Text("1000 PKR Contest"),
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => ContestScreen(fee: 1000)));
+                  MaterialPageRoute(builder: (_) => const ContestScreen(fee: 1000)));
             },
           ),
 
