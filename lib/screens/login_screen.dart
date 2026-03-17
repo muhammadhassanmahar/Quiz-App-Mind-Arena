@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
-  // Added key parameter and marked constructor as const
-  const LoginScreen({Key? key}) : super(key: key);
+  // Key parameter added, constructor cannot be const due to controllers
+  LoginScreen({super.key});
 
-  final emailController = TextEditingController();
-  final passController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,16 +35,20 @@ class LoginScreen extends StatelessWidget {
                 String email = emailController.text;
 
                 // simple admin check
-                if(email == "immaharhasaan@gmail.com"){
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const HomeScreen(isAdmin: true)));
+                if (email == "immaharhasaan@gmail.com") {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => HomeScreen(isAdmin: true)),
+                  );
                 } else {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const HomeScreen(isAdmin: false)));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => HomeScreen(isAdmin: false)),
+                  );
                 }
               },
               child: const Text("Login"),
-            )
+            ),
 
           ],
         ),
