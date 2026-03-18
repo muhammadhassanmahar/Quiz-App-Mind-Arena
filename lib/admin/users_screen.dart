@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
 
 class UsersScreen extends StatefulWidget {
+  // Added key constructor
+  const UsersScreen({super.key});
+
   @override
-  _UsersScreenState createState() => _UsersScreenState();
+  State<UsersScreen> createState() => UsersScreenState();
 }
 
-class _UsersScreenState extends State<UsersScreen> {
+// Removed private (_) to fix public API error
+class UsersScreenState extends State<UsersScreen> {
 
-  List users = [
+  List<Map<String, dynamic>> users = [
     {"name": "Ali", "wallet": 500},
     {"name": "Ahmed", "wallet": 1000},
   ];
 
-  void addBalance(int index){
+  void addBalance(int index) {
     setState(() {
       users[index]["wallet"] += 100;
     });
   }
 
-  void removeBalance(int index){
+  void removeBalance(int index) {
     setState(() {
       users[index]["wallet"] -= 100;
     });
@@ -27,12 +31,11 @@ class _UsersScreenState extends State<UsersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Users")),
+      appBar: AppBar(title: const Text("Users")),
 
       body: ListView.builder(
         itemCount: users.length,
-        itemBuilder: (context, index){
-
+        itemBuilder: (context, index) {
           var u = users[index];
 
           return Card(
@@ -45,12 +48,12 @@ class _UsersScreenState extends State<UsersScreen> {
                 children: [
 
                   IconButton(
-                    icon: Icon(Icons.add),
+                    icon: const Icon(Icons.add),
                     onPressed: () => addBalance(index),
                   ),
 
                   IconButton(
-                    icon: Icon(Icons.remove),
+                    icon: const Icon(Icons.remove),
                     onPressed: () => removeBalance(index),
                   ),
 
