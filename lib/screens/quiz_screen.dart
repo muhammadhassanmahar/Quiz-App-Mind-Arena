@@ -2,47 +2,77 @@ import 'package:flutter/material.dart';
 import 'result_screen.dart';
 
 class QuizScreen extends StatefulWidget {
+  // Added const constructor with key
+  const QuizScreen({super.key});
+
   @override
-  _QuizScreenState createState() => _QuizScreenState();
+  State<QuizScreen> createState() => QuizScreenState();
 }
 
-class _QuizScreenState extends State<QuizScreen> {
+// Removed private (_) to fix public API issue
+class QuizScreenState extends State<QuizScreen> {
 
   int questionIndex = 0;
 
-  List questions = [
+  List<String> questions = [
     "2 + 2 = ?",
     "5 + 3 = ?"
   ];
 
-  nextQuestion(){
-    if(questionIndex < questions.length - 1){
+  void nextQuestion() {
+    if (questionIndex < questions.length - 1) {
       setState(() {
         questionIndex++;
       });
     } else {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (_) => ResultScreen()));
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => const ResultScreen(),
+        ),
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Quiz")),
+      appBar: AppBar(title: const Text("Quiz")),
 
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
 
-          Text(questions[questionIndex], style: TextStyle(fontSize: 22)),
+            Text(
+              questions[questionIndex],
+              style: const TextStyle(fontSize: 22),
+            ),
 
-          ElevatedButton(onPressed: nextQuestion, child: Text("A")),
-          ElevatedButton(onPressed: nextQuestion, child: Text("B")),
-          ElevatedButton(onPressed: nextQuestion, child: Text("C")),
-          ElevatedButton(onPressed: nextQuestion, child: Text("D")),
+            const SizedBox(height: 20),
 
-        ],
+            ElevatedButton(
+              onPressed: nextQuestion,
+              child: const Text("A"),
+            ),
+
+            ElevatedButton(
+              onPressed: nextQuestion,
+              child: const Text("B"),
+            ),
+
+            ElevatedButton(
+              onPressed: nextQuestion,
+              child: const Text("C"),
+            ),
+
+            ElevatedButton(
+              onPressed: nextQuestion,
+              child: const Text("D"),
+            ),
+
+          ],
+        ),
       ),
     );
   }
