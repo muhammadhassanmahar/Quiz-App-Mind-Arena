@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class WithdrawRequestsScreen extends StatelessWidget {
+  // Added const constructor with super.key
+  const WithdrawRequestsScreen({super.key});
 
-  final List withdraws = [
+  final List<Map<String, dynamic>> withdraws = const [
     {"name": "Bilal", "amount": 300},
     {"name": "Usman", "amount": 700},
   ];
@@ -10,12 +12,11 @@ class WithdrawRequestsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Withdraw Requests")),
+      appBar: AppBar(title: const Text("Withdraw Requests")),
 
       body: ListView.builder(
         itemCount: withdraws.length,
-        itemBuilder: (context, index){
-
+        itemBuilder: (context, index) {
           var w = withdraws[index];
 
           return Card(
@@ -28,18 +29,20 @@ class WithdrawRequestsScreen extends StatelessWidget {
                 children: [
 
                   IconButton(
-                    icon: Icon(Icons.check, color: Colors.green),
-                    onPressed: (){
+                    icon: const Icon(Icons.check, color: Colors.green),
+                    onPressed: () {
                       ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text("Marked Paid")));
+                        const SnackBar(content: Text("Marked Paid")),
+                      );
                     },
                   ),
 
                   IconButton(
-                    icon: Icon(Icons.close, color: Colors.red),
-                    onPressed: (){
+                    icon: const Icon(Icons.close, color: Colors.red),
+                    onPressed: () {
                       ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text("Declined")));
+                        const SnackBar(content: Text("Declined")),
+                      );
                     },
                   ),
 
