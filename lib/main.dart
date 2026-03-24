@@ -6,7 +6,6 @@ void main() {
 }
 
 class MindArenaApp extends StatelessWidget {
-  // Added const constructor with key
   const MindArenaApp({super.key});
 
   @override
@@ -20,7 +19,8 @@ class MindArenaApp extends StatelessWidget {
         useMaterial3: true,
       ),
 
-      home: const LoginScreen(),
+      // ❌ const hata diya yahan se
+      home: LoginScreen(),
     );
   }
 }
