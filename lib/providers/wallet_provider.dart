@@ -5,49 +5,67 @@ class WalletProvider with ChangeNotifier {
   int wallet = 0;
   bool isLoading = false;
 
+  /// Set wallet amount directly
   void setWallet(int amount) {
     wallet = amount;
     notifyListeners();
   }
 
-  // Deposit Request
-  Future<void> deposit(int amount) async {
+  /// Send a deposit request to backend
+  Future<bool> deposit(int amount) async {
     isLoading = true;
     notifyListeners();
 
     try {
-      await ApiService.deposit(amount);
+      final response = await ApiService.deposit(amount);
+      if (response["status"] == "success") {
+        wallet += amount; // Update local wallet on success
+        isLoading = false;
+        notifyListeners();
+        return true;
+      } else {
+        debugPrint("Deposit failed: ${response["message"]}");
+      }
     } catch (e) {
-      // Replaced print with debugPrint
       debugPrint("Deposit Error: $e");
     }
 
     isLoading = false;
     notifyListeners();
+    return false;
   }
 
-  // Withdraw Request
-  Future<void> withdraw(int amount) async {
+  /// Send a withdraw request to backend
+  Future<bool> withdraw(int amount) async {
     isLoading = true;
     notifyListeners();
 
     try {
-      await ApiService.withdraw(amount);
+      final response = await ApiService.withdraw(amount);
+      if (response["status"] == "success") {
+        wallet -= amount; // Update local wallet on success
+        isLoading = false;
+        notifyListeners();
+        return true;
+      } else {
+        debugPrint("Withdraw failed: ${response["message"]}");
+      }
     } catch (e) {
-      // Replaced print with debugPrint
       debugPrint("Withdraw Error: $e");
     }
 
     isLoading = false;
     notifyListeners();
+    return false;
   }
 
-  // Update wallet locally
+  /// Add balance locally without backend (optional)
   void addBalance(int amount) {
     wallet += amount;
     notifyListeners();
   }
 
+  /// Deduct balance locally without backend (optional)
   void deductBalance(int amount) {
     wallet -= amount;
     notifyListeners();
