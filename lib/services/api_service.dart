@@ -2,118 +2,108 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class ApiService {
-
-  // ⚠️ apna backend URL yahan lagana
+  // ⚠️ Replace this with your actual backend URL
   static String baseUrl = "https://your-backend-url";
 
   // ================= LOGIN =================
-  static Future<dynamic> login(String email, String password) async {
+  static Future<Map<String, dynamic>> login(String email, String password) async {
     try {
-      var response = await http.post(
+      final response = await http.post(
         Uri.parse("$baseUrl/login"),
         headers: {"Content-Type": "application/json"},
-        body: jsonEncode({
-          "email": email,
-          "password": password
-        }),
+        body: jsonEncode({"email": email, "password": password}),
       );
 
-      return jsonDecode(response.body);
-
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body) as Map<String, dynamic>;
+      } else {
+        return {"status": "error", "message": "Invalid response from server"};
+      }
     } catch (e) {
-      return {
-        "status": "error",
-        "message": "Login failed"
-      };
+      return {"status": "error", "message": "Login failed: $e"};
     }
   }
 
   // ================= DEPOSIT =================
-  static Future<dynamic> deposit(int amount) async {
+  static Future<Map<String, dynamic>> deposit(int amount) async {
     try {
-      var response = await http.post(
+      final response = await http.post(
         Uri.parse("$baseUrl/deposit"),
         headers: {"Content-Type": "application/json"},
-        body: jsonEncode({
-          "amount": amount
-        }),
+        body: jsonEncode({"amount": amount}),
       );
 
-      return jsonDecode(response.body);
-
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body) as Map<String, dynamic>;
+      } else {
+        return {"status": "error", "message": "Invalid response from server"};
+      }
     } catch (e) {
-      return {
-        "status": "error",
-        "message": "Deposit failed"
-      };
+      return {"status": "error", "message": "Deposit failed: $e"};
     }
   }
 
   // ================= WITHDRAW =================
-  static Future<dynamic> withdraw(int amount) async {
+  static Future<Map<String, dynamic>> withdraw(int amount) async {
     try {
-      var response = await http.post(
+      final response = await http.post(
         Uri.parse("$baseUrl/withdraw"),
         headers: {"Content-Type": "application/json"},
-        body: jsonEncode({
-          "amount": amount
-        }),
+        body: jsonEncode({"amount": amount}),
       );
 
-      return jsonDecode(response.body);
-
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body) as Map<String, dynamic>;
+      } else {
+        return {"status": "error", "message": "Invalid response from server"};
+      }
     } catch (e) {
-      return {
-        "status": "error",
-        "message": "Withdraw failed"
-      };
+      return {"status": "error", "message": "Withdraw failed: $e"};
     }
   }
 
   // ================= GET CONTESTS =================
   static Future<List<dynamic>> getContests() async {
     try {
-      var response = await http.get(
-        Uri.parse("$baseUrl/contests"),
-      );
-
-      return jsonDecode(response.body);
-
+      final response = await http.get(Uri.parse("$baseUrl/contests"));
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body) as List<dynamic>;
+      } else {
+        return [];
+      }
     } catch (e) {
       return [];
     }
   }
 
   // ================= JOIN CONTEST =================
-  static Future<dynamic> joinContest(String contestId) async {
+  static Future<Map<String, dynamic>> joinContest(String contestId) async {
     try {
-      var response = await http.post(
+      final response = await http.post(
         Uri.parse("$baseUrl/join-contest"),
         headers: {"Content-Type": "application/json"},
-        body: jsonEncode({
-          "contest_id": contestId
-        }),
+        body: jsonEncode({"contest_id": contestId}),
       );
 
-      return jsonDecode(response.body);
-
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body) as Map<String, dynamic>;
+      } else {
+        return {"status": "error", "message": "Invalid response from server"};
+      }
     } catch (e) {
-      return {
-        "status": "error",
-        "message": "Join contest failed"
-      };
+      return {"status": "error", "message": "Join contest failed: $e"};
     }
   }
 
   // ================= GET QUESTIONS =================
   static Future<List<dynamic>> getQuestions(int contestType) async {
     try {
-      var response = await http.get(
-        Uri.parse("$baseUrl/questions/$contestType"),
-      );
-
-      return jsonDecode(response.body);
-
+      final response = await http.get(Uri.parse("$baseUrl/questions/$contestType"));
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body) as List<dynamic>;
+      } else {
+        return [];
+      }
     } catch (e) {
       return [];
     }
