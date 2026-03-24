@@ -2,26 +2,24 @@ import 'package:flutter/material.dart';
 import '../services/api_service.dart';
 
 class WalletProvider with ChangeNotifier {
-
   int wallet = 0;
   bool isLoading = false;
 
-  void setWallet(int amount){
+  void setWallet(int amount) {
     wallet = amount;
     notifyListeners();
   }
 
   // Deposit Request
   Future<void> deposit(int amount) async {
-
     isLoading = true;
     notifyListeners();
 
-    try{
+    try {
       await ApiService.deposit(amount);
-
-    } catch(e){
-      print(e);
+    } catch (e) {
+      // Replaced print with debugPrint
+      debugPrint("Deposit Error: $e");
     }
 
     isLoading = false;
@@ -30,15 +28,14 @@ class WalletProvider with ChangeNotifier {
 
   // Withdraw Request
   Future<void> withdraw(int amount) async {
-
     isLoading = true;
     notifyListeners();
 
-    try{
+    try {
       await ApiService.withdraw(amount);
-
-    } catch(e){
-      print(e);
+    } catch (e) {
+      // Replaced print with debugPrint
+      debugPrint("Withdraw Error: $e");
     }
 
     isLoading = false;
@@ -46,14 +43,13 @@ class WalletProvider with ChangeNotifier {
   }
 
   // Update wallet locally
-  void addBalance(int amount){
+  void addBalance(int amount) {
     wallet += amount;
     notifyListeners();
   }
 
-  void deductBalance(int amount){
+  void deductBalance(int amount) {
     wallet -= amount;
     notifyListeners();
   }
-
 }
