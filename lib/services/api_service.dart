@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class ApiService {
-  // ⚠️ Replace this with your actual backend URL
+  /// ⚠️ Replace this with your actual backend URL
   static String baseUrl = "https://your-backend-url";
 
   // ================= LOGIN =================
