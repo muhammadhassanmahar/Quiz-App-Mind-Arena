@@ -3,31 +3,27 @@ import '../models/user_model.dart';
 import '../services/api_service.dart';
 
 class AuthProvider with ChangeNotifier {
-
   UserModel? user;
   bool isLoading = false;
 
   // Login function
   Future<bool> login(String email, String password) async {
-
     isLoading = true;
     notifyListeners();
 
     try {
       var response = await ApiService.login(email, password);
 
-      if(response["status"] == "success"){
-
+      if (response["status"] == "success") {
         user = UserModel.fromJson(response["user"]);
 
         isLoading = false;
         notifyListeners();
-
         return true;
       }
-
-    } catch(e){
-      print(e);
+    } catch (e) {
+      // Removed print → better handling
+      debugPrint("Login Error: $e");
     }
 
     isLoading = false;
@@ -36,11 +32,10 @@ class AuthProvider with ChangeNotifier {
   }
 
   // Logout
-  void logout(){
+  void logout() {
     user = null;
     notifyListeners();
   }
 
   bool get isAdmin => user?.role == "admin";
-
 }
