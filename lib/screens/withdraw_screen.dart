@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 
 class WithdrawScreen extends StatefulWidget {
-  const WithdrawScreen({Key? key}) : super(key: key);
+  const WithdrawScreen({super.key}); // ✅ modern super parameter
 
   @override
-  _WithdrawScreenState createState() => _WithdrawScreenState();
+  WithdrawScreenState createState() => WithdrawScreenState(); // ✅ public state
 }
 
-class _WithdrawScreenState extends State<WithdrawScreen> {
+class WithdrawScreenState extends State<WithdrawScreen> {
   final TextEditingController accountController = TextEditingController();
   final TextEditingController amountController = TextEditingController();
 
   @override
   void dispose() {
-    // Dispose controllers to avoid memory leaks
     accountController.dispose();
     amountController.dispose();
     super.dispose();
@@ -47,7 +46,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text("Withdraw Request Sent"))
                 );
-                // Optionally clear fields after submission
+
                 accountController.clear();
                 amountController.clear();
               },
