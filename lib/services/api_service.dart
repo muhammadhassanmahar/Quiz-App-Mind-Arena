@@ -8,7 +8,6 @@ class ApiService {
 
   // ================= LOGIN =================
   static Future<dynamic> login(String email, String password) async {
-
     try {
       var response = await http.post(
         Uri.parse("$baseUrl/login"),
@@ -22,14 +21,15 @@ class ApiService {
       return jsonDecode(response.body);
 
     } catch (e) {
-      print("Login Error: $e");
-      return {"status": "error"};
+      return {
+        "status": "error",
+        "message": "Login failed"
+      };
     }
   }
 
   // ================= DEPOSIT =================
   static Future<dynamic> deposit(int amount) async {
-
     try {
       var response = await http.post(
         Uri.parse("$baseUrl/deposit"),
@@ -42,13 +42,15 @@ class ApiService {
       return jsonDecode(response.body);
 
     } catch (e) {
-      print("Deposit Error: $e");
+      return {
+        "status": "error",
+        "message": "Deposit failed"
+      };
     }
   }
 
   // ================= WITHDRAW =================
   static Future<dynamic> withdraw(int amount) async {
-
     try {
       var response = await http.post(
         Uri.parse("$baseUrl/withdraw"),
@@ -61,13 +63,15 @@ class ApiService {
       return jsonDecode(response.body);
 
     } catch (e) {
-      print("Withdraw Error: $e");
+      return {
+        "status": "error",
+        "message": "Withdraw failed"
+      };
     }
   }
 
   // ================= GET CONTESTS =================
   static Future<List<dynamic>> getContests() async {
-
     try {
       var response = await http.get(
         Uri.parse("$baseUrl/contests"),
@@ -76,14 +80,12 @@ class ApiService {
       return jsonDecode(response.body);
 
     } catch (e) {
-      print("Contest Error: $e");
       return [];
     }
   }
 
   // ================= JOIN CONTEST =================
   static Future<dynamic> joinContest(String contestId) async {
-
     try {
       var response = await http.post(
         Uri.parse("$baseUrl/join-contest"),
@@ -96,13 +98,15 @@ class ApiService {
       return jsonDecode(response.body);
 
     } catch (e) {
-      print("Join Error: $e");
+      return {
+        "status": "error",
+        "message": "Join contest failed"
+      };
     }
   }
 
   // ================= GET QUESTIONS =================
   static Future<List<dynamic>> getQuestions(int contestType) async {
-
     try {
       var response = await http.get(
         Uri.parse("$baseUrl/questions/$contestType"),
@@ -111,9 +115,7 @@ class ApiService {
       return jsonDecode(response.body);
 
     } catch (e) {
-      print("Questions Error: $e");
       return [];
     }
   }
-
 }
